@@ -1,24 +1,11 @@
-# README
+# 33 Minutes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis-ci.org/33-minutes/33-minutes-server.svg?branch=master)](https://travis-ci.org/33-minutes/33-minutes-server)
 
-Things you may want to cover:
+## Copyright & License
 
-* Ruby version
+Copyright (c) 2018 Daniel Doubrovkine
 
-* System dependencies
+Dual license, commercial software, open-source under the MIT license for non-commercial use only.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+See [LICENSE](LICENSE.md).
