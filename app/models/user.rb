@@ -23,6 +23,8 @@ class User
     return self if BCrypt::Password.new(password_digest) == password
   end
 
+  has_many :meetings
+
   protected
 
   def encrypt_password
