@@ -3,14 +3,21 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'bcrypt'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'graphql'
+gem 'graphql-errors'
 gem 'mongoid'
 gem 'puma', '~> 3.11'
-gem 'rails', '~> 5.2.0'
-
 gem 'rack-cors'
+gem 'rails', '~> 5.2.0'
+gem 'warden'
 
 group :development, :test do
+  gem 'database_cleaner'
+  gem 'fabrication'
+  gem 'faker'
+  gem 'graphlient'
   gem 'rspec-rails'
   gem 'rubocop'
 end
