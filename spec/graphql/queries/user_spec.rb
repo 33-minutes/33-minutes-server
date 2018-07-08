@@ -6,7 +6,7 @@ describe 'Current User Query', type: :request do
   let(:query) do
     <<-GRAPHQL
       query {
-        current_user {
+        user {
           id
           email
         }
@@ -16,7 +16,7 @@ describe 'Current User Query', type: :request do
 
   it 'returns an current_user' do
     response = client.execute(query)
-    user = response.data.current_user
+    user = response.data.user
     expect(user.id).to eq current_user.id.to_s
   end
 end

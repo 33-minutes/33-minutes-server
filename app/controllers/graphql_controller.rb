@@ -6,6 +6,7 @@ class GraphqlController < ApplicationController
       context: context,
       operation_name: operation_name
     )
+
     render json: result
   end
 
