@@ -15,5 +15,5 @@ Types::UserType = GraphQL::ObjectType.define do
     }
   end
 
-  field :meetings, -> { !types[Types::MeetingType] }
+  connection :meetings, Types::MeetingType.connection_type
 end
