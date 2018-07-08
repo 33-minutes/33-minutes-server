@@ -6,11 +6,13 @@ describe 'Current User Meetings Query', type: :request do
   let(:query) do
     <<-GRAPHQL
       query {
-        meetings {
-          id
-          title
-          started
-          finished
+        user {
+          meetings {
+            id
+            title
+            started
+            finished
+          }
         }
       }
     GRAPHQL
@@ -19,7 +21,7 @@ describe 'Current User Meetings Query', type: :request do
   let!(:meetings) { 3.times { Fabricate(:meeting, user: current_user) } }
 
   it 'returns the meetings' do
-    meetings = client.execute(query).data.meetings
+    meetings = client.execute(query).data.user.meetings
     expect(meetings.size).to eq 3
   end
 end
