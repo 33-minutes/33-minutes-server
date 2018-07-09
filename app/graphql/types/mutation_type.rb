@@ -6,4 +6,5 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :logout, field: Mutations::LogoutMutation.field
 
   field :createMeeting, field: Mutations::CreateMeetingMutation.field
+  field :deleteMeeting, field: Mutations::DeleteMeetingMutation.field
 end
