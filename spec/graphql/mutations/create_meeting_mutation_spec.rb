@@ -12,6 +12,11 @@ describe 'Create Meeting', type: :request do
             title
             started
             finished
+          },
+          meetingEdge {
+            node {
+              id
+            }
           }
         }
       }
@@ -35,6 +40,9 @@ describe 'Create Meeting', type: :request do
       expect(meeting.title).to eq title
       expect(DateTime.parse(meeting.started)).to eq started_at.utc.iso8601
       expect(DateTime.parse(meeting.finished)).to eq finished_at.utc.iso8601
+
+      edge = response.data.create_meeting.meeting_edge
+      expect(edge.node.id).to eq meeting.id
 
       user_meeting = current_user.meetings.first
       expect(user_meeting).to_not be nil
