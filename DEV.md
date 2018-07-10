@@ -74,13 +74,25 @@ mutation {
 
 ### Get User with Meetings
 
+Includes relay-style pagination.
+
 ```graphql
 query {
   user {
     name
-    meetings {
-      id
-      title
+    meetings(first: 10) {
+      edges {
+        node {
+          id
+          title
+        },
+        cursor
+      },
+      pageInfo {
+        hasNextPage,
+        hasPreviousPage,
+        endCursor
+      }
     }
   }
 }
