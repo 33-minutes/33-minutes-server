@@ -15,5 +15,9 @@ Types::UserType = GraphQL::ObjectType.define do
     }
   end
 
-  connection :meetings, Types::MeetingType.connection_type
+  connection :meetings, Types::MeetingType.connection_type do
+    resolve ->(obj, _, _) {
+      obj.meetings.desc(:_id)
+    }
+  end
 end

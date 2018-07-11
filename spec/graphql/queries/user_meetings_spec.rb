@@ -31,9 +31,10 @@ describe 'Current User Meetings Query', type: :request do
       GRAPHQL
     end
 
-    it 'returns the meetings' do
+    it 'returns meetings in descending order' do
       meetings = client.execute(query).data.user.meetings.edges.map(&:node)
       expect(meetings.size).to eq 3
+      expect(meetings.map(&:id)).to eq current_user.meetings.desc(:id).pluck(:id).map(&:to_s)
     end
   end
 
