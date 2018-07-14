@@ -66,7 +66,7 @@ describe 'Create User', type: :request do
             password: password
           }
         )
-      end.to raise_error Graphlient::Errors::ExecutionError, 'createUser: Validation failed: Email Please enter a valid email address.'
+      end.to raise_error Graphlient::Errors::ExecutionError, 'createUser: Validation failed: Email is invalid'
     end
   end
 end

@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-describe 'Login', type: :request do
-  include Warden::Test::Helpers
-
+describe 'Logout', type: :request do
   include_context 'GraphQL Client'
 
   let(:login_query) do

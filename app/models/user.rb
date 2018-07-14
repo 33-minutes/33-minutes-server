@@ -5,17 +5,17 @@ class User
   field :name, type: String
 
   field :email, type: String
-  validates_presence_of :email
+  validates :email, email: true
   index({ email: 1 }, unique: true)
 
   attr_accessor :password
+  validates :password, length: { within: 6..40 }, if: proc { |u| u.password }
 
   field :password_digest, type: String
   validates_presence_of :password_digest
 
   validates_presence_of :email, message: 'Email address is required.'
   validates_uniqueness_of :email, message: 'Email address already in use.'
-  validates_format_of :email, with: /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i, message: 'Please enter a valid email address.'
 
   before_validation :encrypt_password
 
