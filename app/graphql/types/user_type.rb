@@ -5,7 +5,8 @@ Types::UserType = GraphQL::ObjectType.define do
   field :id, types.ID, 'User ID.'
   field :name, types.String, 'User full name.'
   field :email, types.String, 'User email.'
-  field :created_at, Types::DateTimeType, 'Account creation date.'
+  field :created, Types::DateTimeType, 'Account creation date.'
+  field :weeklyMeetingBudget, types.Float, 'Weekly meeting budget in hours.', property: :weekly_meeting_budget
 
   field :meeting, !Types::MeetingType do
     argument :id, !types.String

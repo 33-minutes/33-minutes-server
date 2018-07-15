@@ -11,6 +11,7 @@ describe 'Update User', type: :request do
             id
             name
             email
+            weeklyMeetingBudget
           }
         }
       }
@@ -25,12 +26,14 @@ describe 'Update User', type: :request do
     response = client.execute(
       query, input: {
         name: name,
-        email: email
+        email: email,
+        weeklyMeetingBudget: 14
       }
     )
     update_user = response.data.update_user.user
     expect(update_user.name).to eq name
     expect(update_user.email).to eq email
+    expect(update_user.weekly_meeting_budget).to eq 14
 
     current_user.reload
     expect(current_user.name).to eq name

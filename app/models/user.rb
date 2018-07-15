@@ -8,6 +8,8 @@ class User
   validates :email, email: true
   index({ email: 1 }, unique: true)
 
+  field :weekly_meeting_budget, type: Float, default: 10
+
   attr_accessor :password
   validates :password, length: { within: 6..40 }, if: proc { |u| u.password }
 
