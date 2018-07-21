@@ -21,4 +21,10 @@ Types::UserType = GraphQL::ObjectType.define do
       obj.meetings.desc(:_id)
     }
   end
+
+  connection :weekly_meetings, Types::WeeklyMeetingsType.connection_type do
+    resolve ->(obj, _, _) {
+      obj.weekly_meetings.to_a
+    }
+  end
 end

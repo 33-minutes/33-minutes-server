@@ -4,8 +4,6 @@ development:
       database: 33_minutes_server_development
       hosts:
         - localhost:27017
-      options:
-        log_level: info
 
 test:
   clients:
@@ -17,5 +15,4 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
-        log_level: info
 

@@ -21,6 +21,7 @@ group :development, :test do
   gem 'graphlient'
   gem 'rspec-rails'
   gem 'rubocop'
+  gem 'timecop'
 end
 
 group :development do

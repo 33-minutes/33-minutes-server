@@ -98,3 +98,10 @@ query {
 }
 ```
 
+## Rake Tasks
+
+Generate a bunch of meetings.
+
+```
+rake user:meetings:seed['user@example.com', 30]
+```

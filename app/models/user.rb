@@ -27,6 +27,10 @@ class User
 
   has_many :meetings
 
+  def weekly_meetings
+    WeeklyMeetings.new(meetings)
+  end
+
   protected
 
   def encrypt_password
