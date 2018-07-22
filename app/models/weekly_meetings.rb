@@ -1,7 +1,8 @@
 class WeeklyMeetings < SimpleDelegator
-  def initialize(meetings)
-    super meetings.collection.aggregate(
+  def initialize(user)
+    super user.meetings.collection.aggregate(
       [
+        { '$match' => { user_id: user.id } },
         {
           '$group' => {
             _id: {

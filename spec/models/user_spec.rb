@@ -22,6 +22,17 @@ RSpec.describe User, type: :model do
             { '_id' => { 'year' => 2018, 'week' => 12 }, 'count' => 5, 'duration' => 18_000_000 }
           ]
         end
+        context 'with another user' do
+          before do
+            Fabricate(:meeting, user: Fabricate(:user))
+          end
+          it 'aggregates only meetings by this user' do
+            expect(meetings).to eq [
+              { '_id' => { 'year' => 2018, 'week' => 13 }, 'count' => 2, 'duration' => 7_200_000 },
+              { '_id' => { 'year' => 2018, 'week' => 12 }, 'count' => 5, 'duration' => 18_000_000 }
+            ]
+          end
+        end
       end
     end
   end

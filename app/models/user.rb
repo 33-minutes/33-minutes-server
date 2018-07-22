@@ -28,7 +28,7 @@ class User
   has_many :meetings
 
   def weekly_meetings
-    WeeklyMeetings.new(meetings)
+    WeeklyMeetings.new(self)
   end
 
   protected
