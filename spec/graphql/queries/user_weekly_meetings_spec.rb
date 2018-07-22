@@ -17,7 +17,7 @@ describe 'Current User Weekly Meetings Query', type: :request do
     <<-GRAPHQL
       query {
         user {
-          weekly_meetings {
+          weeklyMeetings {
             edges {
               node {
                 week

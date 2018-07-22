@@ -22,7 +22,7 @@ Types::UserType = GraphQL::ObjectType.define do
     }
   end
 
-  connection :weekly_meetings, Types::WeeklyMeetingsType.connection_type do
+  connection :weeklyMeetings, Types::WeeklyMeetingsType.connection_type do
     resolve ->(obj, _, _) {
       obj.weekly_meetings.to_a
     }
