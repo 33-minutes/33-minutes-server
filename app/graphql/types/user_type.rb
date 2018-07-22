@@ -24,7 +24,16 @@ Types::UserType = GraphQL::ObjectType.define do
 
   connection :weeklyMeetings, Types::WeeklyMeetingsType.connection_type do
     resolve ->(obj, _, _) {
-      obj.weekly_meetings.to_a
+      obj.weekly_meetings.map do |weekly_meeting|
+        OpenStruct.new(
+          id: "#{weekly_meeting['_id']['year']}-#{weekly_meeting['_id']['week']}",
+          year: weekly_meeting['_id']['year'],
+          week: weekly_meeting['_id']['week'],
+          weekStart: Date.commercial(weekly_meeting['_id']['year'], weekly_meeting['_id']['week'], 1),
+          count: weekly_meeting['count'],
+          duration: weekly_meeting['duration'] / 1000
+        )
+      end
     }
   end
 end

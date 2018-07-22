@@ -18,8 +18,8 @@ RSpec.describe User, type: :model do
         let(:meetings) { user.weekly_meetings.to_a }
         it 'aggregates by week' do
           expect(meetings).to eq [
-            { '_id' => { 'year' => 2018, 'week' => 12 }, 'count' => 5, 'duration' => 18_000_000 },
-            { '_id' => { 'year' => 2018, 'week' => 13 }, 'count' => 2, 'duration' => 7_200_000 }
+            { '_id' => { 'year' => 2018, 'week' => 13 }, 'count' => 2, 'duration' => 7_200_000 },
+            { '_id' => { 'year' => 2018, 'week' => 12 }, 'count' => 5, 'duration' => 18_000_000 }
           ]
         end
       end

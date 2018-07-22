@@ -11,7 +11,8 @@ class WeeklyMeetings < SimpleDelegator
             count: { '$sum' => 1 },
             duration: { '$sum' => { '$subtract' => ['$finished_at', '$started_at'] } }
           }
-        }
+        },
+        { '$sort' => { _id: -1 } }
       ]
     )
   end

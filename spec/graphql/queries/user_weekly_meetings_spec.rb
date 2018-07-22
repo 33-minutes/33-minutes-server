@@ -20,7 +20,9 @@ describe 'Current User Weekly Meetings Query', type: :request do
           weeklyMeetings {
             edges {
               node {
+                id
                 week
+                weekStart
                 year
                 count
                 duration
@@ -41,8 +43,8 @@ describe 'Current User Weekly Meetings Query', type: :request do
   it 'returns weekly meetings' do
     meetings = client.execute(query).data.user.weekly_meetings.edges.map(&:node)
     expect(meetings.map(&:to_h)).to eq [
-      { 'week' => 12, 'year' => 2018, 'count' => 5, 'duration' => 18_000 },
-      { 'week' => 13, 'year' => 2018, 'count' => 2, 'duration' => 7200 }
+      { 'id' => '2018-13', 'week' => 13, 'weekStart' => '2018-03-26', 'year' => 2018, 'count' => 2, 'duration' => 7200 },
+      { 'id' => '2018-12', 'week' => 12, 'weekStart' => '2018-03-19', 'year' => 2018, 'count' => 5, 'duration' => 18_000 }
     ]
   end
 end
