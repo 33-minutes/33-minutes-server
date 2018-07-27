@@ -11,8 +11,14 @@ test:
       database: 33_minutes_server_test
       hosts:
         - localhost:27017
-      options:
-        read:
-          mode: :primary
-        max_pool_size: 1
+      read:
+        mode: :primary
+      max_pool_size: 1
 
+
+production:
+  clients:
+    default:
+      uri: <%= ENV['MONGO_URL'] %>
+      raise_not_found_error: false
+      use_utc: true
