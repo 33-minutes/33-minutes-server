@@ -12,7 +12,10 @@ describe 'Create Meeting', type: :request do
             title
             started
             finished
-            location
+            location {
+              latitude
+              longitude
+            }
           },
           meetingEdge {
             node {
@@ -43,6 +46,8 @@ describe 'Create Meeting', type: :request do
       expect(meeting.title).to eq title
       expect(DateTime.parse(meeting.started)).to eq started_at.utc.iso8601
       expect(DateTime.parse(meeting.finished)).to eq finished_at.utc.iso8601
+      expect(meeting.location.latitude).to eq location[:latitude]
+      expect(meeting.location.longitude).to eq location[:longitude]
 
       edge = response.data.create_meeting.meeting_edge
       expect(edge.node.id).to eq meeting.id
