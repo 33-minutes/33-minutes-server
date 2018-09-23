@@ -7,4 +7,5 @@ Types::MeetingType = GraphQL::ObjectType.define do
   field :started, Types::DateTimeType, 'The time at which this meeting started.', property: :started_at
   field :finished, Types::DateTimeType, 'The time at which this meeting ended.', property: :finished_at
   field :user, Types::UserType, 'Owner of this meeting.'
+  field :location, Types::LocationType, 'Geo-location of meeting.'
 end

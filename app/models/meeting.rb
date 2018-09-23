@@ -1,11 +1,13 @@
 class Meeting
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Geospatial
   include ActionView::Helpers::DateHelper
 
   field :title, type: String
   field :started_at, type: DateTime
   field :finished_at, type: DateTime
+  field :location, type: Point
 
   validates_presence_of :started_at
   validates_presence_of :finished_at

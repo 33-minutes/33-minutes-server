@@ -100,6 +100,8 @@ GEM
     mongoid (7.0.1)
       activemodel (>= 5.1, < 6.0.0)
       mongo (>= 2.5.1, < 3.0.0)
+    mongoid-geospatial (5.0.0)
+      mongoid (>= 5.0.0.beta)
     msgpack (1.2.4)
     multipart-post (2.0.0)
     newrelic_rpm (5.2.0.345)
@@ -210,6 +212,7 @@ DEPENDENCIES
   graphql-errors
   listen (>= 3.0.5, < 3.2)
   mongoid
+  mongoid-geospatial
   newrelic_rpm
   puma (~> 3.11)
   rack-cors
@@ -225,4 +228,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.2
+   1.16.3

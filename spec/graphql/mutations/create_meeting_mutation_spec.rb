@@ -12,6 +12,7 @@ describe 'Create Meeting', type: :request do
             title
             started
             finished
+            location
           },
           meetingEdge {
             node {
@@ -26,6 +27,7 @@ describe 'Create Meeting', type: :request do
   let(:title) { Faker::Company.buzzword }
   let(:started_at) { Faker::Time.backward(1) }
   let(:finished_at) { Time.now }
+  let(:location) { { latitude: 22.3407, longitude: 114.2054 } }
 
   it 'returns an meeting' do
     expect do
@@ -33,7 +35,8 @@ describe 'Create Meeting', type: :request do
         query, input: {
           title: title,
           started: started_at,
-          finished: finished_at
+          finished: finished_at,
+          location: location
         }
       )
       meeting = response.data.create_meeting.meeting
