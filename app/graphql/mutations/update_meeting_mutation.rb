@@ -5,6 +5,7 @@ Mutations::UpdateMeetingMutation = GraphQL::Relay::Mutation.define do
   input_field :title, types.String
   input_field :started, Types::DateTimeType
   input_field :finished, Types::DateTimeType
+  input_field :location, Types::GeoCoordinates
 
   return_field :meeting, Types::MeetingType
 

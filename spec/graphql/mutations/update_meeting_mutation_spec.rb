@@ -12,6 +12,7 @@ describe 'Update Meeting', type: :request do
           meeting {
             id
             title
+            location
           }
         }
       }
@@ -32,5 +33,28 @@ describe 'Update Meeting', type: :request do
       expect(update_meeting.title).to eq title
     end.to_not change(Meeting, :count)
     expect(meeting.reload.title).to eq title
+  end
+
+  it 'updates location' do
+    response = client.execute(
+      query, input: {
+        id: meeting.id.to_s,
+        location: '50.004444, 36.231389'
+      }
+    )
+    update_meeting = response.data.update_meeting.meeting
+    expect(update_meeting.location).to eq "50°0'16\"N 36°13'53\"E"
+    expect(meeting.reload.location.to_s).to eq "50°0'16\"N 36°13'53\"E"
+  end
+
+  it 'fails with an invalid location' do
+    expect do
+      client.execute(
+        query, input: {
+          id: meeting.id.to_s,
+          location: 'invalid'
+        }
+      )
+    end.to raise_error Graphlient::Errors::GraphQLError, /location: Could not coerce value "invalid" to GeoCoordinates/
   end
 end
