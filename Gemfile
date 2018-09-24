@@ -6,6 +6,7 @@ ruby '2.5.1'
 gem 'bcrypt'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'email_validator'
+gem 'geo_coord', require: 'geo/coord'
 gem 'graphql'
 gem 'graphql-errors'
 gem 'mongoid'

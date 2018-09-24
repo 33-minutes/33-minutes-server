@@ -3,5 +3,5 @@ Fabricator(:meeting) do
   started_at { Faker::Time.backward(1) }
   finished_at { Time.now }
   user { Fabricate(:user) }
-  location { { latitude: 22.3407, longitude: 114.2054 } }
+  location '50.004444, 36.231389'
 end

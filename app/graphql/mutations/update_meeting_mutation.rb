@@ -17,6 +17,8 @@ Mutations::UpdateMeetingMutation = GraphQL::Relay::Mutation.define do
         data[:title] = inputs[:title] if inputs.key?(:title)
         data[:started_at] = inputs[:started] if inputs.key?(:started)
         data[:finished_at] = inputs[:finished] if inputs.key?(:finished)
+        data[:location] = inputs[:location].to_h if inputs.key?(:location)
+
         meeting.update_attributes!(data)
         { meeting: meeting }
       end

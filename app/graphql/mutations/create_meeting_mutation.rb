@@ -4,7 +4,7 @@ Mutations::CreateMeetingMutation = GraphQL::Relay::Mutation.define do
   input_field :title, types.String
   input_field :started, !Types::DateTimeType
   input_field :finished, !Types::DateTimeType
-  input_field :location, Types::InputLocationType
+  input_field :location, Types::GeoCoordinates
 
   return_field :meeting, Types::MeetingType
   return_field :meetingsConnection, Types::MeetingType.connection_type
@@ -14,14 +14,12 @@ Mutations::CreateMeetingMutation = GraphQL::Relay::Mutation.define do
     user = ctx[:current_user]
 
     if user
-      data = {}
-
-      data[:title] = inputs[:title]
-      data[:started_at] = inputs[:started]
-      data[:finished_at] = inputs[:finished]
-      data[:location] = inputs[:location].to_h if inputs[:location]
-
-      meeting = user.meetings.create!(data)
+      meeting = user.meetings.create!(
+        title: inputs[:title],
+        started_at: inputs[:started],
+        finished_at: inputs[:finished],
+        location: inputs[:location] ? inputs[:location].to_h : nil
+      )
 
       range_add = GraphQL::Relay::RangeAdd.new(
         parent: user,
