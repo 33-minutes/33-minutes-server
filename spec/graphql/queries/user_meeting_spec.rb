@@ -28,6 +28,6 @@ describe 'Current User Meeting Query', type: :request do
     expect(returned_meeting.title).to eq meeting.title
     expect(returned_meeting.started).to eq meeting.started_at.utc.iso8601
     expect(returned_meeting.finished).to eq meeting.finished_at.utc.iso8601
-    expect(returned_meeting.location).to eq meeting.location.to_s
+    expect(returned_meeting.location).to eq meeting.location.to_a
   end
 end

@@ -43,8 +43,8 @@ describe 'Update Meeting', type: :request do
       }
     )
     update_meeting = response.data.update_meeting.meeting
-    expect(update_meeting.location).to eq "50°0'16\"N 36°13'53\"E"
-    expect(meeting.reload.location.to_s).to eq "50°0'16\"N 36°13'53\"E"
+    expect(update_meeting.location).to eq [50.004444, 36.231389]
+    expect(meeting.reload.location.to_a).to eq [50.004444, 36.231389]
   end
 
   it 'fails with an invalid location' do

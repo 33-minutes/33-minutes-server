@@ -43,7 +43,7 @@ describe 'Create Meeting', type: :request do
       expect(meeting.title).to eq title
       expect(DateTime.parse(meeting.started)).to eq started_at.utc.iso8601
       expect(DateTime.parse(meeting.finished)).to eq finished_at.utc.iso8601
-      expect(Geo::Coord.parse(meeting.location)).to eq location
+      expect(meeting.location).to eq [location.latitude, location.longitude]
 
       edge = response.data.create_meeting.meeting_edge
       expect(edge.node.id).to eq meeting.id
