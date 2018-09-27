@@ -35,26 +35,43 @@ describe 'Update Meeting', type: :request do
     expect(meeting.reload.title).to eq title
   end
 
-  it 'updates location' do
-    response = client.execute(
-      query, input: {
-        id: meeting.id.to_s,
-        location: '50.004444, 36.231389'
-      }
-    )
-    update_meeting = response.data.update_meeting.meeting
-    expect(update_meeting.location).to eq [50.004444, 36.231389]
-    expect(meeting.reload.location.to_a).to eq [50.004444, 36.231389]
-  end
-
-  it 'fails with an invalid location' do
-    expect do
+  context 'updates location' do
+    let(:response) do
       client.execute(
         query, input: {
           id: meeting.id.to_s,
-          location: 'invalid'
+          location: location
         }
       )
-    end.to raise_error Graphlient::Errors::GraphQLError, /location: Could not coerce value "invalid" to GeoCoordinates/
+    end
+
+    let(:updated_meeting) { response.data.update_meeting.meeting }
+
+    context 'string' do
+      let(:location) { '50.004444, 36.231389' }
+
+      it 'updates location' do
+        expect(updated_meeting.location).to eq [50.004444, 36.231389]
+        expect(meeting.reload.location.to_a).to eq [50.004444, 36.231389]
+      end
+    end
+
+    context 'array' do
+      let(:location) { [50.004444, 36.231389] }
+
+      it 'updates location' do
+        expect(updated_meeting.location).to eq [50.004444, 36.231389]
+        expect(meeting.reload.location.to_a).to eq [50.004444, 36.231389]
+      end
+    end
+
+    context 'invalid' do
+      let(:location) { 'invalid' }
+      it 'fails with an invalid location' do
+        expect do
+          updated_meeting
+        end.to raise_error Graphlient::Errors::GraphQLError, /location: Could not coerce value "invalid" to GeoCoordinates/
+      end
+    end
   end
 end
